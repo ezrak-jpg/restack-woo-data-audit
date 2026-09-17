@@ -10,9 +10,9 @@ Static co-branded landing page with an embedded HubSpot form.
 The page embeds a HubSpot form via `js.hsforms.net`.
 
 - Portal ID: `2687773` (Woo.io, region `na1`)
-- Set `WOO_FORM_ID` near the bottom of `index.html` to the form GUID.
+- Form GUID: `7b70cab8-43bb-4cff-a583-2bf0a07c23aa`
 
-Until a real GUID is set, the form area shows a placeholder message.
+
 
 Form fields expected: first name, last name, work email, company, database (ATS).
 Submit button: "Get my free audit."

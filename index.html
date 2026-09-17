@@ -473,12 +473,11 @@
       <h2>Claim your free data audit</h2>
       <p class="sub">Tell us where to look. We'll come back with real numbers on your own data.</p>
 
-      <!-- HubSpot form target -->
-      <div id="hs-audit-form">
-        <div class="form-placeholder" id="form-fallback">
-          Form loading…
-        </div>
-      </div>
+      <!-- HubSpot form — portal 2687773 (na1) -->
+      <div class="hs-form-frame"
+           data-region="na1"
+           data-form-id="7b70cab8-43bb-4cff-a583-2bf0a07c23aa"
+           data-portal-id="2687773"></div>
 
       <p class="formfoot">
         No cost, no commitment. Your data stays yours — we report on it, we don't retain it.
@@ -496,28 +495,7 @@
 </footer>
 
 <!-- ================= HUBSPOT EMBED ================= -->
-<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-<script>
-  // Woo HubSpot portal: 2687773 (na1)
-  // TODO: replace FORM_GUID_HERE with the GUID of the "RE:STACK x Woo — Free Data Audit" form.
-  var WOO_FORM_ID = "FORM_GUID_HERE";
-
-  window.addEventListener('load', function () {
-    if (!window.hbspt || WOO_FORM_ID === "FORM_GUID_HERE") {
-      var fb = document.getElementById('form-fallback');
-      if (fb) fb.textContent = 'Form not yet connected — add the HubSpot form GUID to publish.';
-      return;
-    }
-    var fb = document.getElementById('form-fallback');
-    if (fb) fb.remove();
-    hbspt.forms.create({
-      portalId: "2687773",
-      region: "na1",
-      formId: WOO_FORM_ID,
-      target: "#hs-audit-form"
-    });
-  });
-</script>
+<script src="https://js.hsforms.net/forms/embed/2687773.js" defer></script>
 
 </body>
 </html>
