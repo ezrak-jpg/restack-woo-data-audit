@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Data Audit — RE:STACK &amp; Woo</title>
+<meta name="description" content="Is your database ready for AI? A free audit from RE:STACK, powered by Woo, showing exactly how much of your ATS data is still true.">
+<meta property="og:title" content="Free Data Audit — RE:STACK &amp; Woo">
+<meta property="og:description" content="Find out how much of your database is still true — and how much placeable talent is already sitting in it.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf9f5;
+    --ink:#0d0d0d;
+    --ink-soft:#4a4a48;
+    --line:#e3e0d8;
+    --orange:#ff4d00;
+    --amber:#ff9500;
+    --white:#fff;
+    --radius:14px;
+    --maxw:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ---------- co-brand bar ---------- */
+  .brandbar{border-bottom:1px solid var(--line);background:var(--white)}
+  .brandbar-inner{
+    max-width:var(--maxw);margin:0 auto;padding:18px 24px;
+    display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;
+  }
+  .brandbar img{display:block;mix-blend-mode:multiply}
+  .logo-restack{height:56px;width:auto}
+  .logo-woo{height:32px;width:auto}
+  .brand-div{width:1px;height:40px;background:var(--line)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:68px 0 8px;text-align:center}
+  .eyebrow{
+    display:inline-block;
+    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--orange);
+    border:1.5px solid var(--orange);
+    border-radius:999px;
+    padding:7px 16px;
+    margin-bottom:26px;
+  }
+  h1{
+    font-size:clamp(30px,5vw,54px);
+    line-height:1.12;
+    font-weight:800;
+    letter-spacing:-.025em;
+    max-width:17ch;
+    margin:0 auto;
+    text-wrap:balance;
+  }
+  h1 .accent{
+    background:linear-gradient(95deg,var(--orange),var(--amber));
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .offeredby{
+    margin-top:22px;
+    font-size:16px;font-weight:500;color:var(--ink-soft);
+  }
+  .offeredby strong{color:var(--ink);font-weight:700}
+  .lead{
+    max-width:64ch;margin:30px auto 0;
+    font-size:clamp(16px,1.9vw,18.5px);
+    color:var(--ink-soft);
+    text-wrap:pretty;
+  }
+  .lead em{font-style:normal;color:var(--ink);font-weight:600}
+
+  .cta-row{margin-top:34px}
+  .btn{
+    display:inline-block;
+    background:var(--ink);color:var(--white);
+    font-size:16px;font-weight:600;
+    padding:16px 34px;border-radius:999px;
+    text-decoration:none;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--orange);transform:translateY(-1px)}
+
+  /* ---------- graphic ---------- */
+  .graphic{padding:56px 0 8px}
+  .graphic figure{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px 26px 22px;
+    box-shadow:0 1px 3px rgba(13,13,13,.04);
+  }
+  figcaption{
+    margin-top:18px;text-align:center;
+    font-size:12.5px;color:#8b8880;
+  }
+
+  /* record comparison */
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 44px 1fr;
+    align-items:center;gap:8px;
+  }
+  .rec{border-radius:12px;padding:20px 20px 18px}
+  .rec-stale{background:#f4f2ec;border:1.5px solid var(--line)}
+  .rec-live{background:var(--white);border:2px solid var(--amber)}
+  .rec-hd{
+    font-size:11px;font-weight:700;letter-spacing:.14em;
+    margin-bottom:12px;
+  }
+  .rec-stale .rec-hd{color:#a8a49a}
+  .rec-live .rec-hd{color:var(--orange)}
+  .rec-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .avatar{width:34px;height:34px;border-radius:50%;flex:0 0 auto}
+  .rec-stale .avatar{background:#ddd9d0}
+  .rec-live .avatar{background:linear-gradient(140deg,var(--orange),var(--amber))}
+  .bars{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+  .bar{height:10px;border-radius:5px}
+  .bar.sm{height:8px}
+  .rec-stale .bar{background:#c9c5bb}
+  .rec-stale .bar.sm{background:#ddd9d0}
+  .rec-live .bar{background:var(--ink)}
+  .rec-live .bar.sm{background:#c9c5bb}
+  .pill{
+    margin-left:auto;flex:0 0 auto;
+    display:inline-flex;align-items:center;gap:6px;
+    background:#fff4ec;border:1px solid #ffd0b0;border-radius:999px;
+    padding:5px 11px;
+    font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--orange);
+  }
+  .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange)}
+  .rec-rows{border-top:1.5px solid rgba(0,0,0,.06);padding-top:16px;display:grid;gap:15px}
+  .row-lbl{
+    font-size:10.5px;font-weight:700;letter-spacing:.1em;
+    margin-bottom:7px;
+  }
+  .rec-stale .row-lbl{color:#b5b1a7}
+  .rec-live .row-lbl{color:#a8a49a}
+  .row-val{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .note{font-size:11.5px;font-weight:700;color:var(--orange);white-space:nowrap}
+  .chip-new{background:linear-gradient(140deg,var(--orange),var(--amber))!important}
+  .rec-foot{
+    margin-top:16px;padding-top:14px;
+    border-top:1.5px solid rgba(0,0,0,.06);
+    font-size:11.5px;font-weight:500;
+  }
+  .rec-stale .rec-foot{color:#a8a49a}
+  .rec-live .rec-foot{color:var(--orange)}
+  .arrow{display:flex;align-items:center;justify-content:center;color:var(--amber)}
+  .arrow svg{width:28px;height:28px;display:block}
+
+  /* ---------- audit list ---------- */
+  .audit{padding:64px 0 0}
+  .sec-head{text-align:center;margin-bottom:38px}
+  .sec-head h2{
+    font-size:clamp(23px,3.2vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1.2;
+    text-wrap:balance;
+  }
+  .sec-head p{margin-top:12px;color:var(--ink-soft);font-size:16px}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 24px;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .card .num{
+    flex:0 0 auto;
+    width:30px;height:30px;border-radius:8px;
+    background:linear-gradient(140deg,var(--orange),var(--amber));
+    color:var(--white);
+    font-size:13px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card p{font-size:16px;line-height:1.5;font-weight:500}
+
+  /* ---------- payoff ---------- */
+  .payoff{padding:56px 0 0}
+  .payoff-inner{
+    background:var(--ink);color:var(--white);
+    border-radius:20px;
+    padding:46px 40px;
+    text-align:center;
+  }
+  .payoff-inner p{
+    font-size:clamp(17px,2.3vw,22px);
+    line-height:1.45;font-weight:500;
+    max-width:56ch;margin:0 auto;
+    text-wrap:pretty;
+  }
+  .payoff-inner .hl{
+    background:linear-gradient(95deg,var(--orange),var(--amber));
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    font-weight:700;
+  }
+
+  /* ---------- form ---------- */
+  .formsec{padding:64px 0 80px;scroll-margin-top:20px}
+  .formcard{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:44px 40px;
+    max-width:620px;margin:0 auto;
+    box-shadow:0 4px 24px rgba(13,13,13,.05);
+  }
+  .formcard h2{
+    font-size:clamp(22px,3vw,29px);font-weight:700;
+    letter-spacing:-.02em;text-align:center;line-height:1.2;
+  }
+  .formcard .sub{
+    text-align:center;color:var(--ink-soft);
+    font-size:15px;margin:12px auto 30px;max-width:44ch;
+  }
+  .formfoot{
+    margin-top:22px;text-align:center;
+    font-size:12.5px;color:#8b8880;line-height:1.5;
+  }
+
+  /* HubSpot form styling */
+  .hs-form-frame,.hbspt-form{font-family:'Inter',sans-serif!important}
+  .hbspt-form .hs-form-field{margin-bottom:17px}
+  .hbspt-form label{
+    display:block;font-size:13.5px;font-weight:600;
+    color:var(--ink);margin-bottom:7px;
+  }
+  .hbspt-form label .hs-form-required{color:var(--orange);margin-left:2px}
+  .hbspt-form input[type=text],
+  .hbspt-form input[type=email],
+  .hbspt-form input[type=tel],
+  .hbspt-form select,
+  .hbspt-form textarea{
+    width:100%!important;
+    font-family:'Inter',sans-serif;font-size:15.5px;
+    padding:13px 15px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    background:var(--cream);
+    color:var(--ink);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .hbspt-form input:focus,
+  .hbspt-form select:focus,
+  .hbspt-form textarea:focus{
+    outline:none;border-color:var(--orange);background:var(--white);
+  }
+  .hbspt-form .hs-button{
+    width:100%;
+    background:linear-gradient(95deg,var(--orange),var(--amber));
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    font-size:16.5px;font-weight:700;
+    padding:16px 24px;
+    border:none;border-radius:999px;
+    cursor:pointer;margin-top:10px;
+    transition:opacity .15s ease, transform .15s ease;
+  }
+  .hbspt-form .hs-button:hover{opacity:.92;transform:translateY(-1px)}
+  .hbspt-form .hs-error-msg,.hbspt-form .hs-error-msgs label{
+    color:#c62828;font-size:13px;font-weight:500;margin-top:5px;
+  }
+  .hbspt-form .hs-richtext{font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+  .hbspt-form .submitted-message{
+    text-align:center;font-size:17px;font-weight:500;padding:18px 0;
+  }
+  /* placeholder shown until the real form is wired in */
+  .form-placeholder{
+    border:2px dashed var(--line);border-radius:12px;
+    padding:34px 22px;text-align:center;color:#8b8880;font-size:14px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:30px 0;background:var(--white)}
+  .foot-inner{
+    max-width:var(--maxw);margin:0 auto;padding:0 24px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:18px;flex-wrap:wrap;
+    font-size:13px;color:#8b8880;
+  }
+  .foot-inner a{color:var(--ink-soft);text-decoration:none}
+  .foot-inner a:hover{color:var(--orange)}
+
+  @media (max-width:720px){
+    .cards{grid-template-columns:1fr}
+    .hero{padding-top:48px}
+    .payoff-inner{padding:34px 24px}
+    .formcard{padding:32px 22px}
+    .graphic figure{padding:20px 14px 16px}
+    .compare{grid-template-columns:1fr;gap:6px}
+    .arrow{transform:rotate(90deg);padding:6px 0}
+    .foot-inner{justify-content:center;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= CO-BRAND BAR ================= -->
+<header class="brandbar">
+  <div class="brandbar-inner">
+    <img src="assets/restack-logo.png" alt="RE:STACK" class="logo-restack">
+    <span class="brand-div"></span>
+    <img src="assets/woo-logo.png" alt="Woo" class="logo-woo">
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Free Data Audit</span>
+    <h1>Is your database ready for <span class="accent">AI</span>? Is your network ready to be activated?</h1>
+    <p class="offeredby">Offered by <strong>RE:STACK</strong>. Powered by <strong>Woo</strong>.</p>
+    <p class="lead">
+      Every agency database looks bigger than it really is. Candidates change jobs, contacts are hiring at new
+      companies, titles move on and skills are acquired — but the record in your ATS stays frozen on the day
+      someone typed it in. <em>That's the quiet reason AI sourcing, automations and outreach campaigns
+      underperform:</em> they're running on data that stopped being true years ago.
+    </p>
+    <div class="cta-row">
+      <a href="#audit-form" class="btn">Claim your free data audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GRAPHIC ================= -->
+<section class="graphic">
+  <div class="wrap">
+    <figure>
+      <div class="compare">
+
+        <!-- stale record -->
+        <div class="rec rec-stale">
+          <div class="rec-hd">IN YOUR ATS</div>
+          <div class="rec-top">
+            <span class="avatar"></span>
+            <span class="bars">
+              <span class="bar" style="width:70%"></span>
+              <span class="bar sm" style="width:48%"></span>
+            </span>
+          </div>
+          <div class="rec-rows">
+            <div>
+              <div class="row-lbl">TITLE</div>
+              <div class="row-val"><span class="bar" style="width:62%"></span></div>
+            </div>
+            <div>
+              <div class="row-lbl">COMPANY</div>
+              <div class="row-val"><span class="bar" style="width:48%"></span></div>
+            </div>
+            <div>
+              <div class="row-lbl">SKILLS</div>
+              <div class="row-val">
+                <span class="bar" style="width:62px"></span>
+                <span class="bar" style="width:48px"></span>
+              </div>
+            </div>
+          </div>
+          <div class="rec-foot">Last updated 3 years ago</div>
+        </div>
+
+        <!-- arrow -->
+        <div class="arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12h15M13 6l6 6-6 6"/>
+          </svg>
+        </div>
+
+        <!-- live record -->
+        <div class="rec rec-live">
+          <div class="rec-hd">TODAY</div>
+          <div class="rec-top">
+            <span class="avatar"></span>
+            <span class="bars">
+              <span class="bar" style="width:70%"></span>
+              <span class="bar sm" style="width:48%"></span>
+            </span>
+            <span class="pill">CURRENT</span>
+          </div>
+          <div class="rec-rows">
+            <div>
+              <div class="row-lbl">TITLE</div>
+              <div class="row-val">
+                <span class="bar" style="width:52%"></span>
+                <span class="note">promoted</span>
+              </div>
+            </div>
+            <div>
+              <div class="row-lbl">COMPANY</div>
+              <div class="row-val">
+                <span class="bar" style="width:38%"></span>
+                <span class="note">moved &mdash; and hiring</span>
+              </div>
+            </div>
+            <div>
+              <div class="row-lbl">SKILLS</div>
+              <div class="row-val">
+                <span class="bar" style="width:62px"></span>
+                <span class="bar" style="width:48px"></span>
+                <span class="bar chip-new" style="width:54px"></span>
+                <span class="bar chip-new" style="width:40px"></span>
+                <span class="note">+2 new</span>
+              </div>
+            </div>
+          </div>
+          <div class="rec-foot">Tracked continuously</div>
+        </div>
+
+      </div>
+      <figcaption>Illustrative example of a single record. The audit runs this across a segment of your own database.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= WHAT THE AUDIT SHOWS ================= -->
+<section class="audit">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What this limited-time free audit shows you</h2>
+      <p>Run on a segment of your own database — not a benchmark, not an estimate.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="num">1</span>
+        <p>The exact percentage of your records that are out of date.</p>
+      </div>
+      <div class="card">
+        <span class="num">2</span>
+        <p>How many of your contacts are actually searchable today.</p>
+      </div>
+      <div class="card">
+        <span class="num">3</span>
+        <p>How many have moved to a new company — and where they went.</p>
+      </div>
+      <div class="card">
+        <span class="num">4</span>
+        <p>Which companies already in your database are hiring right now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAYOFF ================= -->
+<section class="payoff">
+  <div class="wrap">
+    <div class="payoff-inner">
+      <p>
+        You'll walk away knowing which of your AI initiatives are built on solid ground, and
+        <span class="hl">how much placeable talent and open business is already sitting in the database you own.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORM ================= -->
+<section class="formsec" id="audit-form">
+  <div class="wrap">
+    <div class="formcard">
+      <h2>Claim your free data audit</h2>
+      <p class="sub">Tell us where to look. We'll come back with real numbers on your own data.</p>
+
+      <!-- HubSpot form target -->
+      <div id="hs-audit-form">
+        <div class="form-placeholder" id="form-fallback">
+          Form loading…
+        </div>
+      </div>
+
+      <p class="formfoot">
+        No cost, no commitment. Your data stays yours — we report on it, we don't retain it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="foot-inner">
+    <span>A RE:STACK &amp; Woo partnership</span>
+    <span><a href="https://tech.woo.io" target="_blank" rel="noopener">tech.woo.io</a></span>
+  </div>
+</footer>
+
+<!-- ================= HUBSPOT EMBED ================= -->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script>
+  // Woo HubSpot portal: 2687773 (na1)
+  // TODO: replace FORM_GUID_HERE with the GUID of the "RE:STACK x Woo — Free Data Audit" form.
+  var WOO_FORM_ID = "FORM_GUID_HERE";
+
+  window.addEventListener('load', function () {
+    if (!window.hbspt || WOO_FORM_ID === "FORM_GUID_HERE") {
+      var fb = document.getElementById('form-fallback');
+      if (fb) fb.textContent = 'Form not yet connected — add the HubSpot form GUID to publish.';
+      return;
+    }
+    var fb = document.getElementById('form-fallback');
+    if (fb) fb.remove();
+    hbspt.forms.create({
+      portalId: "2687773",
+      region: "na1",
+      formId: WOO_FORM_ID,
+      target: "#hs-audit-form"
+    });
+  });
+</script>
+
+</body>
+</html>
